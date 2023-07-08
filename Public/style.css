@@ -1,0 +1,266 @@
+* {
+	padding: 0; 
+	margin: 0; 
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	font-size: 1vh;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+
+	background: rgb(44, 32, 17);
+
+	overflow: hidden;
+}
+
+canvas {
+	display: block;
+	/* width: 100vw;
+	height: 100vw;
+	max-height: 70vh;
+	max-width: 70vh; */
+	position: absolute;
+	inset: 2vh 0 0 0;
+	margin: 0 auto;
+	/* border: 1rem solid rgb(30, 30, 30);
+	/* border-width: 1rem 0rem 2rem 0; */ /* Ponerle borde al elemento le roba espacio de renderizado */
+	background-color: rgb(37, 40, 44);
+	box-shadow: 0 0 2vh 1vh rgb(100, 81, 59);
+	/*Esta es la propiedad adecuada para el pixel-art, según la documentación. No es tan bueno cuando no tiene el mismo tamaño o mayor que el elemento */
+	image-rendering: pixelated; 
+}
+
+.pad {
+	position: sticky;
+	margin: 0 auto;
+	height: 30vh;
+	inset: 70vh 0 0 0;
+}
+
+.pad::after{
+	content: '';
+	position: absolute;
+	inset: calc(100% - 26rem) 1rem;
+	width: 24rem;
+	height: 24rem;
+	border-radius: 50%;
+	z-index: -1;
+	background-color: rgb(95, 93, 76, 0.2);
+	box-shadow: 0 0 6px 2px rgba(3, 192, 113, 0.4);
+}
+
+.ArrowUp {
+	position: absolute;
+	inset: calc(100% - 24rem) 9rem;
+	width: 8rem;
+	height: 8rem;
+
+	border-radius: 8px 8px 60% 60%;
+	box-shadow: 0px -3px 0 2px rgb(7, 70, 17);
+	background: linear-gradient(rgb(4, 133, 25), rgb(7, 100, 22));
+}
+.ArrowUp:active {
+	box-shadow: 0px -1px 0 2px rgb(7, 70, 17);
+	inset: calc(100% - 24.2rem) 9rem;
+}
+
+.ArrowDown {
+	position: absolute;
+	inset: calc(100% - 12rem) 9rem;
+	width: 8rem;
+	height: 8rem;
+
+	border-radius: 60% 60% 8px 8px;
+	box-shadow: 0px 3px 0 2px rgb(19, 47, 204);
+	background: linear-gradient(rgb(22, 51, 219), rgb(15, 91, 231));
+}
+.ArrowDown:active {
+	box-shadow: 0px 1px 0 2px rgb(19, 47, 204);
+	inset: calc(100% - 11.8rem) 9rem;
+}
+
+.ArrowLeft {
+	position: absolute;
+	inset: calc(100% - 18rem) 3rem;
+	width: 8rem;
+	height: 8rem;
+	
+	border-radius: 8px 60% 60% 8px;
+	box-shadow: -3px 0 0 2px rgb(148, 24, 55);
+	background: linear-gradient(90deg, rgb(255, 93, 120), rgb(197, 29, 71));
+}
+.ArrowLeft:active {
+	box-shadow: -1px 0px 0 2px rgb(148, 24, 55);
+	inset: calc(100% - 18rem) 2.8rem;
+}
+
+.ArrowRight {
+	position: absolute;
+	inset: calc(100% - 18rem) 15rem;
+	width: 8rem;
+	height: 8rem;
+
+	border-radius: 60% 8px 8px 60%;
+	box-shadow: 3px 0 0 2px rgb(114, 2, 2);
+	background: linear-gradient(90deg, rgb(158, 6, 6), rgb(248, 14, 14));
+	
+}
+.ArrowRight:active {
+	box-shadow: 1px 0px 0 2px rgb(114, 2, 2);
+	inset: calc(100% - 18rem) 15.2rem;
+}
+
+.ArrowUp::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 10% auto;
+
+	border-left: 3vh solid transparent;
+  	border-right: 3vh solid transparent;
+  	border-bottom: 3vh solid rgb(44, 25, 36);
+}
+
+.ArrowDown::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 50% auto;
+
+	border-left: 3vh solid transparent;
+  	border-right: 3vh solid transparent;
+  	border-top: 3vh solid rgb(43, 25, 44);
+}
+
+.ArrowLeft::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 15% 10%;
+
+	border-bottom: 3vh solid transparent;
+  	border-top: 3vh solid transparent;
+  	border-right: 3vh solid rgb(44, 25, 36);
+}
+
+.ArrowRight::after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 15% 50%;
+
+	border-bottom: 3vh solid transparent;
+  	border-top: 3vh solid transparent;
+  	border-left: 3vh solid rgb(56, 30, 45);
+}
+
+
+.action{
+	position: relative;
+	inset: calc(100% - 28rem) calc(100% - 40%);
+	width: 14rem;
+}
+.action::after{
+	content: '';
+	position: absolute;
+	width: 90%;
+	height: 100%;
+
+	inset: 0 18%;
+	z-index: -1;
+	border-radius: 35%;
+	transform: rotate(14deg);
+	background-color: rgb(95, 93, 76, 0.2);
+	box-shadow: 0 0 6px 2px rgba(3, 192, 113, 0.4);
+}
+
+.A {
+	position: absolute;
+	inset: 5% calc(100% - 55%);
+	width: 9rem;
+	height: 9rem;
+	
+	border-radius: 50%;
+	box-shadow: 0 3px 0 3px rgb(131, 78, 0);
+	background: linear-gradient(rgb(230, 198, 16), rgb(151, 124, 2));
+}
+.A:active {
+	inset: calc(100% - 93%) calc(100% - 55%);
+	box-shadow: 0 1px 0 3px rgb(131, 78, 0);
+}
+
+.B {
+	position: absolute;
+	inset: calc(90% - 9rem - 6px) calc(100% - 78%);
+	width: 9rem;
+	height: 9rem;
+	
+	border-radius: 50%;
+	box-shadow: 0 3px 0 3px rgb(131, 78, 0);
+	background: linear-gradient(rgb(230, 198, 16), rgb(151, 124, 2));
+}
+.B:active {
+	inset: calc(92% - 9rem - 6px) calc(100% - 78%);
+	box-shadow: 0 1px 0 3px rgb(131, 78, 0);
+}
+
+.A::after {
+	content: 'A';
+	display: block;
+
+	padding: 1vh 0 0 0;
+	font-size: 6rem;
+	font-weight: 400;
+	text-align: center;
+	color: rgb(99, 71, 87);
+
+	width: 100%;
+	height: 100%;
+	margin: -5% auto;
+}
+
+
+.B::after {
+	content: 'B';
+	display: block;
+
+	padding: 1.5vh 0 0 0;
+	font-size: 6rem;
+	font-weight: 400;
+	text-align: center;
+	color: rgb(99, 71, 87);
+
+	width: 100%;
+	height: 100%;
+	margin: -5% auto;
+}
+
+@media (max-height: 576px) {
+	
+	canvas {
+		margin: 10 auto;
+	}
+	.pad {
+		width: 100vw;
+		height: 150px;
+		inset: 70vh 0 0 0;
+	}
+
+	.action {
+		width: 16rem;
+		height: 16rem;
+		inset: calc(100% - 36rem) calc(100% - 25em);
+	}
+
+	
+}
