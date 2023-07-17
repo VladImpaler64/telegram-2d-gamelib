@@ -1,10 +1,12 @@
 'use strict';
-const cors = require('cors'); // Si se quiere interpretar como el nuevo estándar se debe poner import, pero también debes agregar que se está usando el tipo módulo y no commonJS
-const path = require('path');
-const express = require('express');
+import cors from "cors" // Si se quiere interpretar como el nuevo estándar se debe poner import, pero también debes agregar que se está usando el tipo módulo y no commonJS
+import path from "path"
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import express from "express"
 const app = express();
-const server = require('http').createServer(app);
-
+import http from "http"
+const server = http.createServer(app);
 // CORS
 app.use(cors());
 // Configurando las opciones de cors
@@ -23,20 +25,20 @@ const corsOptions = {
 }
 
 
-app.use(express.static(path.resolve(__dirname, './Public')));
+app.use(express.static(path.resolve(__dirname, './public')));
 app.use("/duck", express.static(path.resolve(__dirname, '../SVG')));
 
 app.get('/', (req, res)=>{
     console.log(req.method, req.url, req.ip, `Status: 200`);
     res.status(200)
-    .sendFile(path.resolve(__dirname, './Public/index.html'));
+    .sendFile(path.resolve(__dirname, './public/index.html'));
     
 });
 
 app.get('/api', (req, res)=>{
     console.log(req.method, req.url, req.ip, `Status: 200`);
     res.status(200)
-    .sendFile(path.resolve(__dirname, './Public/index.html'));
+    .sendFile(path.resolve(__dirname, './public/index.html'));
     
 });
 
@@ -51,7 +53,7 @@ app.get('/productos', cors(corsOptions), (req, res)=>{ // Cuando soliciten un co
 app.get('/favicon.ico', (req, res)=>{
     console.log(req.method, req.url, req.ip, `Status: 200`);
     res.status(200)
-    .sendFile(path.resolve(__dirname, './Public/Imagenes/favicon.png'));
+    .sendFile(path.resolve(__dirname, './public/Imagenes/favicon.png'));
 });
 
 app.all('*', (req, res)=>{
