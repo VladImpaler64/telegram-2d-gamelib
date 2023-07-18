@@ -15,11 +15,20 @@ body {
 	width: 100%;
 	height: 100%;
 
-	background: rgb(44, 32, 17);
+	background: rgb(20, 0, 20);
 
 	overflow: hidden;
 }
 
+body > div {
+	width: 100%;
+	height: 100%;
+
+	background-image: url("../Imagenes/1293302.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
 canvas {
 	display: block;
 	/* width: 100vw;
@@ -29,16 +38,18 @@ canvas {
 	position: absolute;
 	inset: 2vh 0 0 0;
 	margin: 0 auto;
+	border-radius: 1.2rem;
 	/* border: 1rem solid rgb(30, 30, 30);
 	/* border-width: 1rem 0rem 2rem 0; */ /* Ponerle borde al elemento le roba espacio de renderizado */
 	background-color: rgb(37, 40, 44);
-	box-shadow: 0 0 2vh 1vh rgb(100, 81, 59);
+	/* box-shadow: 0 0 2vh 1vh rgb(100, 81, 59); */
 	/*Esta es la propiedad adecuada para el pixel-art, según la documentación. No es tan bueno cuando no tiene el mismo tamaño o mayor que el elemento */
 	image-rendering: pixelated; 
 }
 
 .pad {
 	position: sticky;
+	display: flex;
 	margin: 0 auto;
 	height: 30vh;
 	inset: 70vh 0 0 0;
@@ -52,8 +63,8 @@ canvas {
 	height: 24rem;
 	border-radius: 50%;
 	z-index: -1;
-	background-color: rgb(95, 93, 76, 0.2);
-	box-shadow: 0 0 6px 2px rgba(3, 192, 113, 0.4);
+	background-color: rgb(125, 123, 226, 0.2);
+	box-shadow: 0 0 6px 2px rgba(199, 192, 113, 0.4);
 }
 
 .ArrowUp {
@@ -78,11 +89,11 @@ canvas {
 	height: 8rem;
 
 	border-radius: 60% 60% 8px 8px;
-	box-shadow: 0px 3px 0 2px rgb(19, 47, 204);
-	background: linear-gradient(rgb(22, 51, 219), rgb(15, 91, 231));
+	box-shadow: 0px 3px 0 2px rgb(10, 60, 130);
+	background: linear-gradient(rgb(22, 100, 219), rgb(15, 131, 231));
 }
 .ArrowDown:active {
-	box-shadow: 0px 1px 0 2px rgb(19, 47, 204);
+	box-shadow: 0px 1px 0 2px rgb(10, 60, 130);
 	inset: calc(100% - 11.8rem) 9rem;
 }
 
@@ -167,27 +178,27 @@ canvas {
 
 
 .action{
-	position: relative;
-	inset: calc(100% - 28rem) calc(100% - 40%);
+	position: absolute;
+	inset: calc(100% - 30rem) calc(100% - 15%);
 	width: 14rem;
 }
-.action::after{
-	content: '';
-	position: absolute;
-	width: 90%;
-	height: 100%;
+/* .action::after{ */
+/* 	content: ''; */
+/* 	position: absolute; */
+/* 	width: 90%; */
+/* 	height: 100%; */
 
-	inset: 0 18%;
-	z-index: -1;
-	border-radius: 35%;
-	transform: rotate(14deg);
-	background-color: rgb(95, 93, 76, 0.2);
-	box-shadow: 0 0 6px 2px rgba(3, 192, 113, 0.4);
-}
+/* 	inset: 0 18%; */
+/* 	z-index: -1; */
+/* 	border-radius: 35%; */
+/* 	transform: rotate(14deg); */
+/* 	background-color: rgb(95, 93, 76, 0.2); */
+/* 	box-shadow: 0 0 6px 2px rgba(3, 192, 113, 0.4); */
+/* } */
 
 .A {
 	position: absolute;
-	inset: 5% calc(100% - 55%);
+	inset: 5% calc(100% - 50%);
 	width: 9rem;
 	height: 9rem;
 	
@@ -246,20 +257,25 @@ canvas {
 	margin: -5% auto;
 }
 
-@media (max-height: 576px) {
+@media (max-width: 576px) {
 	
 	canvas {
 		margin: 10 auto;
 	}
+
 	.pad {
 		width: 100vw;
-		height: 150px;
 		inset: 70vh 0 0 0;
 	}
 
 	.action {
 		width: 16rem;
 		height: 16rem;
-		inset: calc(100% - 36rem) calc(100% - 25em);
+		inset: calc(100% - 27rem) calc(100% - 40%);
 	}
+
+	.B {
+		inset: calc(90% - 14rem - 6px) calc(100% - 78%)
+	}
+
 }
